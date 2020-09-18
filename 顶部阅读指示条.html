@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>顶部阅读指示条</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .box {
+        height: 5000px;
+        background-color: pink;
+      }
+      .indicate {
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: #1abc9c;
+        height: 5px;
+        width: 0%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box"></div>
+    <div class="indicate"></div>
+    <script>
+      window.onscroll = function () {
+        var scrolltop =
+            document.documentElement.scrollTop || document.body.scrollTop, //滚动条在Y轴上的滚动距离
+          clientheight =
+            document.documentElement.clientHeight || document.body.clientHeight, //内容可视区域的高度
+          scrollheight =
+            document.documentElement.scrollHeight || document.body.scrollHeight, //内容可视区域的高度加上溢出（滚动）的距离
+          indicate = document.getElementsByClassName("indicate")[0];
+
+        if (scrollheight == clientheight + scrolltop) {
+          alert("已经滚动到底了！");
+        }
+        if (scrollheight > clientheight) {
+          //   console.log("开始滚动");
+          indicate.style.width =
+            (scrolltop / (scrollheight - clientheight)) * 100 + "%";
+        }
+      };
+    </script>
+  </body>
+</html>
